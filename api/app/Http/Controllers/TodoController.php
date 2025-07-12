@@ -40,9 +40,17 @@ class TodoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Todo $todo)
     {
-        //
+        $todo = Todo::find( $todo->id);
+
+        if (!$todo) {
+            return response(null, 404);
+        }
+
+        $resource = ["data" => TodoResource::make($todo)];
+
+        return response($resource, 200);
     }
 
     /**
