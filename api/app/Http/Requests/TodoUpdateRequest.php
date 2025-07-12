@@ -21,6 +21,10 @@ class TodoUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return TodoStoreRequest::rules();
+        $storeRequest = new TodoStoreRequest();
+
+        return [
+            ...$storeRequest->rules(),
+        ];
     }
 }
